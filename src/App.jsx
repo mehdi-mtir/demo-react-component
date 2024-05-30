@@ -38,9 +38,16 @@ class App extends React.Component{
         
     }
 
-    addComment(){
+    declineComment= (id)=>{
+        this.setState(
+            {comments : this.state.comments.filter(c=>c.id !== id)}
+        )
+    }
+
+    addComment = ()=>{
         const newComment = {
-            id : 4,
+            id : this.state.comments[this.state.comments.length - 1].id + 1,
+            //id : 4,
             user : "Stevie Feliciano",
             avatar : "https://semantic-ui.com/images/avatar/small/stevie.jpg",
             dateComment : "30/05/2024",
@@ -48,7 +55,9 @@ class App extends React.Component{
         }
 
         //mettre à jour l'objet state
-
+        this.setState(
+            {comments : [...this.state.comments, newComment]}
+        );
     }
 
     render(){
@@ -58,7 +67,7 @@ class App extends React.Component{
         {
 
             this.state.comments.map(
-                comment=> <Card key={comment.id} >
+                comment=> <Card key={comment.id} id={comment.id} declineCommentHandler={this.declineComment}  >
                     <Comment 
                     user={comment.user} 
                     avatar={comment.avatar}
@@ -70,7 +79,7 @@ class App extends React.Component{
         
         }
 
-        <button type="button">Ajouter un commentaire</button>
+        <button type="button" onClick={this.addComment}>Ajouter un commentaire</button>
     </div>
 
     }
