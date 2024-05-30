@@ -5,36 +5,38 @@ import Comment from "./Components/Comment";
 import React from "react";
 //import Compteur from "./Components/Compteur";
 
-var comments = [
-    {
-        id : 1,
-        user : "Matt",
-        avatar : "https://semantic-ui.com/images/avatar/small/matt.jpg",
-        dateComment : "28/05/2024",
-        message : "How artistic!"
-    },
-    {
-        id : 2,
-        user : "Elliot Fu" ,
-        avatar : "https://semantic-ui.com/images/avatar/small/elliot.jpg",
-        dateComment : "29/05/2024" ,
-        message : "Second comment"
-    },
-    {
-        id : 3,
-        user : "Jenny Hess",
-        avatar : "https://semantic-ui.com/images/avatar/small/jenny.jpg",
-        dateComment : "29/05/2024",
-        message : "Last comment"
-    }
-]
-
-
 //import React from "react";
 
 //Création d'un composant basé sur la classe React.Component (version classique)
 
 class App extends React.Component{
+
+    state = {
+        comments : [
+            {
+                id : 1,
+                user : "Matt",
+                avatar : "https://semantic-ui.com/images/avatar/small/matt.jpg",
+                dateComment : "28/05/2024",
+                message : "How artistic!"
+            },
+            {
+                id : 2,
+                user : "Elliot Fu" ,
+                avatar : "https://semantic-ui.com/images/avatar/small/elliot.jpg",
+                dateComment : "29/05/2024" ,
+                message : "Second comment"
+            },
+            {
+                id : 3,
+                user : "Jenny Hess",
+                avatar : "https://semantic-ui.com/images/avatar/small/jenny.jpg",
+                dateComment : "29/05/2024",
+                message : "Last comment"
+            }
+        ]
+        
+    }
 
     render(){
         return <div>
@@ -42,7 +44,7 @@ class App extends React.Component{
         <h1>Commentaires :</h1>
         {
 
-            comments.map(
+            this.state.comments.map(
                 comment=> <Card key={comment.id} >
                     <Comment 
                     user={comment.user} 
