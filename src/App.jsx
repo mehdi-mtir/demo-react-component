@@ -38,6 +38,19 @@ class App extends React.Component{
         
     }
 
+    addComment(){
+        const newComment = {
+            id : 4,
+            user : "Stevie Feliciano",
+            avatar : "https://semantic-ui.com/images/avatar/small/stevie.jpg",
+            dateComment : "30/05/2024",
+            message : "Hey guys, I hope this example comment is helping you read this documentation."
+        }
+
+        //mettre à jour l'objet state
+
+    }
+
     render(){
         return <div>
 
@@ -56,6 +69,8 @@ class App extends React.Component{
             )
         
         }
+
+        <button type="button">Ajouter un commentaire</button>
     </div>
 
     }
