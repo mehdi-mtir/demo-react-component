@@ -2,7 +2,8 @@
 
 import Card from "./Components/Card";
 import Comment from "./Components/Comment";
-import Compteur from "./Components/Compteur";
+import React from "react";
+//import Compteur from "./Components/Compteur";
 
 var comments = [
     {
@@ -32,33 +33,39 @@ var comments = [
 //import React from "react";
 
 //Création d'un composant basé sur la classe React.Component (version classique)
-/*
+
 class App extends React.Component{
 
     render(){
         return <div>
-            <h1>Mon premier composant React</h1>
-            <p> ceci est le premier composant créé ....</p>
-            <p>{test}</p>
-        </div>
-    }
-}*/
 
+        <h1>Commentaires :</h1>
+        {
+
+            comments.map(
+                comment=> <Card key={comment.id} >
+                    <Comment 
+                    user={comment.user} 
+                    avatar={comment.avatar}
+                    dateComment = {comment.dateComment}
+                    message = {comment.message}
+                    />
+                </Card>
+            )
+        
+        }
+    </div>
+
+    }
+
+}
+/*
 function App(){
     return <div>
 
         <h1>Commentaires :</h1>
     
         {
-            /*<Card >
-                <Comment 
-                    user={comments[0].user} 
-                    avatar={comments[0].avatar}
-                    dateComment = {comments[0].dateComment}
-                    message = {comments[0].message}
-                />
-            </Card>*/
-
 
             comments.map(
                 comment=> <Card key={comment.id} >
@@ -77,5 +84,6 @@ function App(){
 
     </div>;
 }
+*/
 
 export default App;

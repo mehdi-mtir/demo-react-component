@@ -8,23 +8,29 @@ class Compteur extends React.Component{
         super(props);
         //L'objet state est immutable => pour modifier la valeur de l'objet state, il faut remplcer tout l'objet à l'aide de setState
         this.state = {
-            compteur : 1
+            x : 1
         }
     }
 
     increment = ()=>{
         //Changer la valeur de l'objet state
-        //this.state.compteur ++; ===> Interdit de changer les valeur du state directement
+        //this.state.x ++; ===> Interdit de changer les valeur du state directement
         //Toute modification du state doit passer par la méthode setState
-        this.setState({compteur : this.state.compteur + 1});
+        this.setState({x : this.state.x + 1});
         //Dès que le state est modifié, React va veiller à mettre à jour l'UI de façon à refléter la nouvelle valeur du state
         //==>Programmation déclarative 
+    }
+
+    decrement = ()=>{
+        this.setState({x : this.state.x - 1});
     }
 
     render(){
         return <div>
             <p>
-                Compteur : {this.state.compteur} <button type="button" onClick={this.increment} > + </button>
+                Compteur : {this.state.x} 
+                <button type="button" onClick={this.increment} > + </button>
+                <button type="button" onClick={this.decrement} > - </button>
             </p>
             <br/><br/><br/>
             
