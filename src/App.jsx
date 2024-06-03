@@ -18,21 +18,24 @@ class App extends React.Component{
                 user : "Matt",
                 avatar : "https://semantic-ui.com/images/avatar/small/matt.jpg",
                 dateComment : "28/05/2024",
-                message : "How artistic!"
+                message : "How artistic!",
+                approved : false
             },
             {
                 id : 2,
                 user : "Elliot Fu" ,
                 avatar : "https://semantic-ui.com/images/avatar/small/elliot.jpg",
                 dateComment : "29/05/2024" ,
-                message : "Second comment"
+                message : "Second comment",
+                approved : false
             },
             {
                 id : 3,
                 user : "Jenny Hess",
                 avatar : "https://semantic-ui.com/images/avatar/small/jenny.jpg",
                 dateComment : "29/05/2024",
-                message : "Last comment"
+                message : "Last comment",
+                approved : false
             }
         ]
         
@@ -44,6 +47,29 @@ class App extends React.Component{
         )
     }
 
+    //Ajouter une méthode approveComment
+    //Challenge 1 : Lorsque le bouton approve est cliqué, on affiche un message avec l'id du comment approuvé!
+    //Challenge 2 : Mettre à jour l'objet state de sorte que l'attribut approuved de l'objet comment sélectionné soit mis à true
+    //Challenge 3 : Afficher les boutons du cards uniquement lorsque l'attribut approuved est à false
+    approveComment = (id)=>{
+        //console.log("Le commentaire d'id : " + id + " est approuvé!");
+        this.setState(
+            {
+                comments : this.state.comments.map(
+                    comment=>{
+                        if(comment.id === id)
+                            return {...comment, approved : true}
+                        else
+                            return comment
+                    }
+                )
+            }
+        );
+
+        //setTimeout(()=>{console.log(this.state.comments)}, 10);
+    }
+
+
     addComment = ()=>{
         const newComment = {
             id : this.state.comments[this.state.comments.length - 1].id + 1,
@@ -51,7 +77,8 @@ class App extends React.Component{
             user : "Stevie Feliciano",
             avatar : "https://semantic-ui.com/images/avatar/small/stevie.jpg",
             dateComment : "30/05/2024",
-            message : "Hey guys, I hope this example comment is helping you read this documentation."
+            message : "Hey guys, I hope this example comment is helping you read this documentation.",
+            approved : false
         }
 
         //mettre à jour l'objet state
@@ -67,13 +94,19 @@ class App extends React.Component{
         {
 
             this.state.comments.map(
-                comment=> <Card key={comment.id} id={comment.id} declineCommentHandler={this.declineComment}  >
-                    <Comment 
-                    user={comment.user} 
-                    avatar={comment.avatar}
-                    dateComment = {comment.dateComment}
-                    message = {comment.message}
-                    />
+                comment=> <Card 
+                    key={comment.id} 
+                    id={comment.id} 
+                    approuved={comment.approved}
+                    declineCommentHandler={this.declineComment}  
+                    approveCommentHandler={this.approveComment}
+                    >
+                        <Comment 
+                        user={comment.user} 
+                        avatar={comment.avatar}
+                        dateComment = {comment.dateComment}
+                        message = {comment.message}
+                        />
                 </Card>
             )
         
